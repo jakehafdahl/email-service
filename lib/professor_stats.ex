@@ -1,0 +1,2 @@
+defmodule ProfessorStats do
+end
