@@ -3,14 +3,14 @@ defmodule ProfessorStats.Repo.Migrations.AddTeamsTable do
 
   def change do
   	create table(:teams) do
-  		add :name, :string
+  		add :team_name, :string
   		add :email, :string
 
   		timestamps
   	end
 
   	create table(:leagues) do
-  		add :name, :string
+  		add :league_name, :string
 
   		timestamps
   	end

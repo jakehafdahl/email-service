@@ -10,4 +10,12 @@ defmodule ProfessorStats.ScoringSetting do
 
   		timestamps
 	end 
+
+	@required_params ~w(position field points_for required_per)
+	@optional_params ~w()
+
+	def changeset(model, params \\ :empty) do
+		model
+		|> cast(params, @required_params, @optional_params)
+	end
 end
