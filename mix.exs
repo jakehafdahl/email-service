@@ -14,7 +14,8 @@ defmodule ProfessorStats.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :mariaex]]
+    [applications: [:logger, :mariaex, :cowboy, :plug],
+      mod: {ProfessorStats, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -27,7 +28,9 @@ defmodule ProfessorStats.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:mariaex, ">= 0.0.0"},
+    [{:cowboy, "~> 1.0.0"},
+     {:plug, "~> 1.0"},
+     {:mariaex, ">= 0.0.0"},
      {:ecto, "~> 1.0"}]
   end
 end

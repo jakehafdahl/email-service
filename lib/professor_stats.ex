@@ -6,7 +6,8 @@ defmodule ProfessorStats do
 		import Supervisor.Spec
 
 		children = [
-			supervisor(ProfessorStats.Repo,[])
+			supervisor(ProfessorStats.Repo,[]),
+			supervisor(ProfessorStats.CalcService,[]),
 		]
 
 		opts = [strategy: :one_for_one, name: ProfessorStats.Supervisor]

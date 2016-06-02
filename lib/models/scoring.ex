@@ -1,12 +1,14 @@
 defmodule ProfessorStats.ScoringSetting do
 	use Ecto.Model
 
+	@primary_key {:id, :binary_id, autogenerate: true}
+
 	schema "leagues" do
   		field :position, :string
   		field :field, :string
   		field :points_for, :integer
   		field :required_per, :integer
-  		belongs_to :leagues, ProfessorStats.League
+  		belongs_to :leagues, ProfessorStats.League, foreign_key: :league_id
 
   		timestamps
 	end 

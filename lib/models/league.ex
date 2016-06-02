@@ -1,9 +1,11 @@
 defmodule ProfessorStats.League do
 	use Ecto.Model
 
+	@primary_key {:id, :binary_id, autogenerate: true}
+
 	schema "leagues" do
 		field :league_name, :string
-    	belongs_to :team, ProfessorStats.Team
+    	belongs_to :team, ProfessorStats.Team, foreign_key: :team_id
     	has_many :scoring_settings, ProfessorStats.ScoringSetting
 
     	timestamps
