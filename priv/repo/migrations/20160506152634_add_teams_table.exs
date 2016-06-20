@@ -2,23 +2,20 @@ defmodule ProfessorStats.Repo.Migrations.AddTeamsTable do
   use Ecto.Migration
 
   def change do
-  	create table(:teams, primary_key: false) do
-      add :id, :uuid, primary_key: true
+  	create table(:teams) do
   		add :team_name, :string
   		add :email, :string
 
   		timestamps
   	end
 
-  	create table(:leagues, primary_key: false) do
-      add :id, :uuid, primary_key: true
+  	create table(:leagues) do
   		add :league_name, :string
 
   		timestamps
   	end
 
-  	create table(:scoring_settings, primary_key: false) do
-      add :id, :uuid, primary_key: true
+  	create table(:scoring_settings) do
   		add :position, :string
   		add :field, :string
   		add :points_for, :integer

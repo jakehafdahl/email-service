@@ -1,7 +1,6 @@
 defmodule ProfessorStats.ScoringSetting do
 	use Ecto.Model
-
-	@primary_key {:id, :binary_id, autogenerate: true}
+	import Ecto.Changeset
 
 	schema "leagues" do
   		field :position, :string
@@ -15,6 +14,10 @@ defmodule ProfessorStats.ScoringSetting do
 
 	@required_params ~w(position field points_for required_per)
 	@optional_params ~w()
+
+	def get_for_team(league) do
+		from s in ProfessorStats.ScoringSetting, where: s.league_id == ^league.id, select: s
+	end
 
 	def changeset(model, params \\ :empty) do
 		model

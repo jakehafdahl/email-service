@@ -1,7 +1,6 @@
 defmodule ProfessorStats.League do
 	use Ecto.Model
-
-	@primary_key {:id, :binary_id, autogenerate: true}
+	import Ecto.Changeset
 
 	schema "leagues" do
 		field :league_name, :string
@@ -13,6 +12,10 @@ defmodule ProfessorStats.League do
 
 	def with_scoring_settings(query) do
 		from q in query, preload: [scoring_settings: :scoring_settings]
+	end
+
+	def get_for_team(team) do
+		from l in ProfessorStats.Team, where: ^team.league_id == l.id, select: l
 	end
 
 	@required_params ~w(league_name)

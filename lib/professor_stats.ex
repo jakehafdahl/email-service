@@ -8,6 +8,7 @@ defmodule ProfessorStats do
 		children = [
 			supervisor(ProfessorStats.Repo,[]),
 			supervisor(ProfessorStats.CalcService,[]),
+			supervisor(ProfessorStats.ScheduleService,[])
 		]
 
 		opts = [strategy: :one_for_one, name: ProfessorStats.Supervisor]

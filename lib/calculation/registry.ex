@@ -45,15 +45,14 @@ defmodule ProfessorStats.CalcRegistry do
 		        {:reply, pid, {players, refs}}
 		    :not_found ->
 		        {:ok, pid} = ProfessorStats.PlayerTable.Supervisor.start_table
-		        ref = Process.monitor(pid)
-		        refs = Map.put(refs, ref, player_id)
+		        refs = Map.put(refs, Process.monitor(pid), player_id)
 		        :ets.insert(players, {player_id, pid})
 		        {:reply, pid, {players, refs}}
 	    end
 	  end
 
 	@doc """
-	Handles when an PlayerTable goes down by removing it from the registry
+	Handles when a PlayerTable goes down by removing it from the registry
 	"""
 	def handle_info({:DOWN, ref, :process, _pid, _reason}, {players, refs}) do
 		{player_id, refs} = Map.pop(refs, ref)

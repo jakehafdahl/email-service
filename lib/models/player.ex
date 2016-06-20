@@ -1,8 +1,7 @@
 defmodule ProfessorStats.Player do
 	use Ecto.Model
+	import Ecto.Changeset
 	
-	@primary_key {:id, :binary_id, autogenerate: true}
-
 	schema "leagues" do
 		field :first_name, :string
 		field :last_name, :string
@@ -18,5 +17,9 @@ defmodule ProfessorStats.Player do
 	def changeset(model, params \\ :empty) do
 		model
 		|> cast(params, @required_params, @optional_params)
+	end
+
+	def player_for(team_player) do
+		from p in ProfessorStats.Player, where: p.id == ^team_player.time_id, select: p		
 	end
 end

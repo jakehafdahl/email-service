@@ -2,8 +2,6 @@ defmodule ProfessorStats.Team do
 	use Ecto.Model
 	import Ecto.Changeset
 
-	@primary_key {:id, :binary_id, autogenerate: true}
-
 	schema "teams" do
 		field :team_name, :string
   		field :email, :string
@@ -13,8 +11,8 @@ defmodule ProfessorStats.Team do
     	timestamps
 	end 
 
-	def with_players_settings(query) do
-		from q in query, preload: [team_players: :team_players]
+	def with_players do
+		from q in ProfessorStats.TeamPlayer, preload: [team_players: :team_players]
 	end
 
 	@required_params ~w(team_name email)

@@ -1,20 +1,30 @@
 # ProfessorStats
 
-**TODO: Add description**
+**An elixir project that will generate customized start/sit information for fantasy teams given a configurable set of projections
 
-## Installation
+###System requirements
+- MySQL via homebrew or https://www.mysql.com/downloads/
+- [Elixir](http://elixir-lang.org/install.html)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+##Setup
+1. Clone the repository
+```bash
+git clone https://github.com/jakehafdahl/email-service
+```
 
-  1. Add professor_stats to your list of dependencies in `mix.exs`:
+2. Get the dependencies
+```bash
+mix deps.get
+```
 
-        def deps do
-          [{:professor_stats, "~> 0.0.1"}]
-        end
+3. Create the professor_stats schema in MySQL
 
-  2. Ensure professor_stats is started before your application:
+4. Run the ecto migrations
+mix ecto.migrate
 
-        def application do
-          [applications: [:professor_stats]]
-        end
+5. Run the project 
+iex -S mix
 
+###License
+
+[MIT License](http://www.opensource.org/licenses/MIT)
