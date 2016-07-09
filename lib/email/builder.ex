@@ -4,8 +4,8 @@ defmodule ProfessorStats.WeeklyEmailBuilder do
 	alias ProfessorStats.Player
 	# fire off worker that calcs the fant points for the players on the team and orders them 
 	# for start/sit stuff
-	def build_email(team, settings, config) do
-		players_for(team)
+	def build_email_info(team, settings, config) do
+		player_info = players_for(team)
 		|> Enum.map(fn player -> 
 			score = settings
 			|> Enum.filter(fn setting -> setting.position == player.position end)
@@ -17,6 +17,8 @@ defmodule ProfessorStats.WeeklyEmailBuilder do
 
 			%{player: player, score: score}
 		end)
+
+		%{team: team, player_info: player_info}
 	end	
 
 	def players_for(team) do

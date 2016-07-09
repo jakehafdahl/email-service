@@ -17,8 +17,7 @@ defmodule ProfessorStats do
 		Supervisor.start_link(children, opts)
 	end
 
-		# def loop do
-
-		# 	loop()
-		# end
+	def loop do
+		loop
+	end
 end
