@@ -2,9 +2,9 @@ defmodule ProfessorStats.TeamPlayer do
 	use Ecto.Model
 	import Ecto.Changeset
 
-	schema "leagues" do
-    	has_one :team, ProfessorStats.Team, foreign_key: :team_id
-    	has_one :player, ProfessorStats.Player, foreign_key: :player_id
+	schema "team_players" do
+    	belongs_to :team, ProfessorStats.Team, foreign_key: :team_id
+    	belongs_to :player, ProfessorStats.Player, foreign_key: :player_id
 
     	timestamps
 	end 

@@ -1,6 +1,6 @@
 defmodule ProfessorStats.WeeklyEmailBuilder do
 	alias ProfessorStats.TeamPlayer
-	alias ProfessorStats.Repo
+	alias ProfessorStats.Models.Repo
 	alias ProfessorStats.Player
 	# fire off worker that calcs the fant points for the players on the team and orders them 
 	# for start/sit stuff
@@ -22,8 +22,8 @@ defmodule ProfessorStats.WeeklyEmailBuilder do
 	end	
 
 	def players_for(team) do
-		team_players = Repo.all(TeamPlayer.team_players_for(team))
+		team_players = Repo.preload(team, :players).players
 
-		players = team_players |> Enum.map(fn team_player -> Repo.first(Player.player_for(team_player)) end)
+		players = team_players |> Enum.map(fn team_player -> Repo.preload(team_player, :player).player) end)
 	end
 end

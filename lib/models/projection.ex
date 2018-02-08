@@ -6,13 +6,13 @@ defmodule ProfessorStats.PlayerProjection do
 		field :week, :integer
   		field :season_year, :integer
 		field :rush_yards, :integer  		
-    	has_one :player, ProfessorStats.Player, foreign_key: :player_id
+    	belongs_to :player, ProfessorStats.Player, foreign_key: :player_id
 
     	timestamps
 	end 
 
 	def get_for_player_and_week(player, week, season_year) do
-		from pp in ProfessorStats.PlayerProjection, where: ^player.id == pp.player_id and ^week == pp.week and ^season_year == pp.season_year , select: pp		
+			from proj in ProfessorStats.PlayerProjection, where: proj.player_id == ^player.id and ^week == proj.week and ^season_year == proj.season_year, select: proj
 	end
 
 	def apply_settings(projection, setting) do
